@@ -9,7 +9,7 @@
     "privatekey": null
   },
   "ssh": {
-    "host": null,
+    "host": "YOUR_HOSTNAME_HERE",
     "port": 22,
     "localAddress": null,
     "localPort": null,
@@ -72,5 +72,5 @@
   },
   "accesslog": false,
   "verify": false,
-  "safeShutdownDuration": 300
+  "safeShutdownDuration": 1
 }
