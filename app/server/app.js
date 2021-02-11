@@ -135,6 +135,8 @@ app.disable("x-powered-by");
 // static files
 app.use("/ssh", express.static(publicPath, expressOptions));
 
+app.get("/", (req, res) => res.redirect("/ssh", 302));
+
 // favicon from root if being pre-fetched by browser to prevent a 404
 app.use(favicon(path.join(publicPath, "favicon.ico")));
 
