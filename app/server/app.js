@@ -109,10 +109,17 @@ var session = require("express-session")({
   unset: "destroy",
 });
 var app = express();
-var server = require("https").createServer({
-	key: fs.readFileSync('/etc/letsencrypt/live/shell.sillyctf.com/privkey.pem'),
-	cert: fs.readFileSync('/etc/letsencrypt/live/shell.sillyctf.com/fullchain.pem')
-}, app);
+var server = require("https").createServer(
+  {
+    key: fs.readFileSync(
+      "/etc/letsencrypt/live/shell.sillyctf.com/privkey.pem"
+    ),
+    cert: fs.readFileSync(
+      "/etc/letsencrypt/live/shell.sillyctf.com/fullchain.pem"
+    ),
+  },
+  app
+);
 var myutil = require("./util");
 myutil.setDefaultCredentials(
   config.user.name,
@@ -129,14 +136,14 @@ var expressOptions = require("./expressOptions");
 var favicon = require("serve-favicon");
 
 var redirApp = express();
-var httpServer = require('http').createServer(redirApp);
+var httpServer = require("http").createServer(redirApp);
 
-redirApp.get('/*', (req, res) => {
-	res.redirect(301, 'https://shell.sillyctf.com/');
+redirApp.get("/*", (req, res) => {
+  res.redirect(301, "https://shell.sillyctf.com/");
 });
 
 httpServer.listen(8080, () => {
-	console.log('HTTP redirect server running on port 8080');
+  console.log("HTTP redirect server running on port 8080");
 });
 
 // express
@@ -150,10 +157,10 @@ app.disable("x-powered-by");
 app.use("/ssh", express.static(publicPath, expressOptions));
 
 app.get("/", (req, res) => {
-	res.set({
-		'Strict-Transport-Security': 'max-age=31536000'
-	});
-	res.redirect(302, "/ssh")
+  res.set({
+    "Strict-Transport-Security": "max-age=31536000",
+  });
+  res.redirect(302, "/ssh");
 });
 
 // favicon from root if being pre-fetched by browser to prevent a 404
