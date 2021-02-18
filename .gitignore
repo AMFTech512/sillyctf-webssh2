@@ -1,7 +1,9 @@
 #Docs
 docs
 
-ssl/*
+ssl
+tls
+*.pem
 
 bigip/*
 

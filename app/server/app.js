@@ -112,10 +112,10 @@ var app = express();
 var server = require("https").createServer(
   {
     key: fs.readFileSync(
-      "/etc/letsencrypt/live/shell.sillyctf.com/privkey.pem"
+      "./server/tls/privkey.pem"
     ),
     cert: fs.readFileSync(
-      "/etc/letsencrypt/live/shell.sillyctf.com/fullchain.pem"
+      "./server/tls/fullchain.pem"
     ),
   },
   app
